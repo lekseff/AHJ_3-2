@@ -1,12 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;600&display=swap" rel="stylesheet" />
+	<title>Tasks</title>
 </head>
+
 <body>
-  
+	<div class="container">
+		<div class="tasks" id="tasks">
+			<h1 class="tasks__title">TOP Tasks</h1>
+			<div class="tasks__input">
+				<label class="tasks__input-name" for="task" style="display: none">Enter task</label>
+				<input class="tasks__input-field" type="text" name="task" id="inputField" placeholder="Enter task" />
+				<button class="tasks__input-button">Добавить</button>
+			</div>
+			<div class="tasks__pinned">
+				<h2>Pinned:</h2>
+				<div class="tasks__item item">
+					<p class="item__text">Описание задачи</p>
+					<input class="item__checkbox" type="checkbox" name="pinned2" id="pinned2"/>
+					<label for="pinned2"></label>
+				</div>
+			</div>
+			<div class="tasks__all">
+				<h2>All Tasks:</h2>
+				<div class="tasks__item item">
+					<p class="item__text">Описание задачи</p>
+					<input class="item__checkbox" type="checkbox" name="pinned4" id="pinned4"/>
+					<label for="pinned4"></label>
+				</div>	
+			</div>
+		</div>
+	</div>
 </body>
 </html>

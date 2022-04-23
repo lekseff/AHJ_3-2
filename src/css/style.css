@@ -3,3 +3,181 @@
 	margin: 0;
 	box-sizing: border-box;
 }
+
+body {
+	font-family: 'Comfortaa', cursive;
+	font-size: 16px;
+	font-weight: 500;
+	background-color: rgb(179, 179, 179);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-image: url(../../pic/bg.jpg);	
+}
+
+h2 {
+	font-size: 18px;
+	padding-left: 12px;
+}
+
+.container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	/* flex-basis: 600px; */
+	max-width: 560px;
+	width: 100%;
+	height: 100vh;
+}
+
+.tasks {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	background-color: white;
+	padding: 15px 20px 25px;
+	border-radius: 10px;
+	box-shadow:inset 0px 0px 16px 4px rgba(91, 95, 106, 0.45);
+}
+
+.tasks__title {
+	margin-bottom: 20px;
+}
+
+.tasks__input {
+	display: flex;
+	justify-content: space-evenly;
+	/* flex-wrap: wrap; */
+	width: 100%;
+	padding: 6px;
+	border: 1px solid darkgrey;
+	border-radius:27px;
+	margin-bottom: 20px;
+}
+
+.tasks__input-field {
+	width: 100%;
+	font-size: 16px;
+	color: #5c5e61;
+	padding: 6px 18px;
+	outline: none;
+	border: none;
+	/* border: 1px solid black; */
+	/* border-bottom: 1px solid black; */
+	/* border-radius: 5px; */
+}
+
+.tasks__input-field::placeholder {
+	text-align: center;
+	opacity: 0.5;
+}
+
+.tasks__input-button {
+	padding: 8px 20px;
+	margin-left: 18px;
+	border: none;
+	border-radius: 16px;
+	background-color: #b4b6b9;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	box-shadow: 3px 3px 5px 0px rgba(34, 60, 80, 0.2);
+}
+
+.tasks__input-button:hover {
+	background-color:#818585;
+	color: white;
+	transition: all 0.3s ease;
+}
+
+.tasks__pinned {
+	width: 100%;
+	margin-bottom: 30px;
+}
+
+.tasks__item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	padding: 10px 20px;
+	margin-top: 15px;
+	border:1px solid darkgrey;
+	/* border-radius: 6px; */
+	border-radius: 1.25em;
+	user-select: none;
+	box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+
+}
+
+.tasks__all {
+	width: 100%;
+}
+
+/* Checkboxes */
+.item__checkbox {
+	position: absolute;
+	opacity: 0;
+	z-index: -1;
+}
+
+.item__checkbox + label {
+	display: inline-flex;
+	align-items: center;
+	user-select: none;
+}
+
+.item__checkbox + label::before {
+	content: '';
+  display: inline-block;
+  width: 1.2em;
+  height: 1.2em;
+  /* flex-shrink: 0; */
+  /* flex-grow: 0; */
+  /* border: 1px solid #8d8d8d; */
+  /* border-radius: 50%; */
+  /* margin-right: 0.5em; */
+	background-image: url(../../pic/no_check.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 100%;
+}
+
+.item__checkbox:checked + label::before {
+	/* border: none; */
+	background-image: url('../../pic/checked3.png');
+}
+
+.item__checkbox+label:hover::before {
+  /* border-color: #03a8d6; */
+	cursor: pointer;
+}
+
+
+/* стили при наведении курсора на checkbox */
+/* .custom-checkbox:not(:disabled):not(:checked)+label:hover::before { */
+  /* border-color: #b3d7ff; */
+	/* cursor: pointer; */
+/* } */
+
+/* стили для активного состояния чекбокса (при нажатии на него) */
+
+/* .custom-checkbox:not(:disabled):active+label::before {
+  background-color: #b3d7ff;
+  border-color: #b3d7ff;
+} */
+
+/* стили для чекбокса, находящегося в фокусе */
+/* .custom-checkbox:focus+label::before {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+} */
+
+/* стили для чекбокса, находящегося в фокусе и не находящегося в состоянии checked */
+/* .custom-checkbox:focus:not(:checked)+label::before {
+  border-color: #80bdff;
+} */
+
+/* стили для чекбокса, находящегося в состоянии disabled */
+/* .custom-checkbox:disabled+label::before {
+  background-color: #e9ecef;
+} */
