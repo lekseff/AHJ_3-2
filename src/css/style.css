@@ -20,6 +20,17 @@ h2 {
 	padding-left: 12px;
 }
 
+button {
+	border: none;
+	border-radius: 50%;
+	background-color: #b4b6b9;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	cursor: pointer;
+	box-shadow: 3px 3px 5px 0px rgba(34, 60, 80, 0.2);
+}
+
 .container {
 	display: flex;
 	justify-content: center;
@@ -48,7 +59,6 @@ h2 {
 .tasks__input {
 	display: flex;
 	justify-content: space-evenly;
-	/* flex-wrap: wrap; */
 	width: 100%;
 	padding: 6px;
 	border: 1px solid darkgrey;
@@ -63,9 +73,6 @@ h2 {
 	padding: 6px 18px;
 	outline: none;
 	border: none;
-	/* border: 1px solid black; */
-	/* border-bottom: 1px solid black; */
-	/* border-radius: 5px; */
 }
 
 .tasks__input-field::placeholder {
@@ -74,20 +81,10 @@ h2 {
 }
 
 .tasks__input-button {
-	padding: 8px 20px;
 	margin-left: 18px;
-	border: none;
-	border-radius: 16px;
-	background-color: #b4b6b9;
-	cursor: pointer;
-	transition: all 0.3s ease;
-	box-shadow: 3px 3px 5px 0px rgba(34, 60, 80, 0.2);
-}
-
-.tasks__input-button:hover {
-	background-color:#818585;
-	color: white;
-	transition: all 0.3s ease;
+	min-width: 32px;
+	height: 32px;
+	background-image: url('../../pic/add.svg');
 }
 
 .tasks__pinned {
@@ -100,14 +97,24 @@ h2 {
 	justify-content: space-between;
 	align-items: center;
 	width: 100%;
-	padding: 10px 20px;
-	margin-top: 15px;
+	padding: 10px 10px 10px 20px;
+	margin-top: 10px;
 	border:1px solid darkgrey;
-	/* border-radius: 6px; */
 	border-radius: 1.25em;
 	user-select: none;
 	box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+}
 
+.item__buttons {
+	display: flex;
+	align-items: center;
+}
+
+.item__button-remove {
+	min-width: 24px;
+	height: 24px;
+	background-image: url('../../pic/remove.svg');
+	margin-left: 14px;
 }
 
 .tasks__all {
@@ -137,7 +144,7 @@ h2 {
   /* border: 1px solid #8d8d8d; */
   /* border-radius: 50%; */
   /* margin-right: 0.5em; */
-	background-image: url(../../pic/no_check.png);
+	background-image: url(../../pic/no_checked_star.svg);
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 100%;
@@ -145,7 +152,7 @@ h2 {
 
 .item__checkbox:checked + label::before {
 	/* border: none; */
-	background-image: url('../../pic/checked3.png');
+	background-image: url('../../pic/star.svg');
 }
 
 .item__checkbox+label:hover::before {
