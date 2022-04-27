@@ -17,6 +17,7 @@ body {
 
 h2 {
 	font-size: 18px;
+	font-weight: 600;
 	padding-left: 12px;
 }
 
@@ -35,16 +36,12 @@ button {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	/* flex-basis: 600px; */
 	max-width: 560px;
 	width: 100%;
 	height: 100vh;
 }
 
 .tasks {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
 	width: 100%;
 	background-color: white;
 	padding: 15px 20px 25px;
@@ -53,17 +50,22 @@ button {
 }
 
 .tasks__title {
+	font-size: 30px;
+	font-weight: 600;
+	text-align: center;
 	margin-bottom: 20px;
 }
 
 .tasks__input {
+	position: relative;
 	display: flex;
-	justify-content: space-evenly;
-	width: 100%;
+	/* justify-content: space-evenly; */
+	/* width: 100%; */
 	padding: 6px;
 	border: 1px solid darkgrey;
 	border-radius:27px;
-	margin-bottom: 20px;
+	transition: all 0.2s ease;
+	/* margin-bottom: 20px; */
 }
 
 .tasks__input-field {
@@ -89,13 +91,16 @@ button {
 
 .tasks__pinned {
 	width: 100%;
-	margin-bottom: 30px;
+	margin-top: 30px;
 }
 
 .tasks__item {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	font-size: 16px;
+	font-weight: 500;
+	color: #4e4c4c;
 	width: 100%;
 	padding: 10px 10px 10px 20px;
 	margin-top: 10px;
@@ -108,6 +113,7 @@ button {
 .item__buttons {
 	display: flex;
 	align-items: center;
+	margin-left: 8px;
 }
 
 .item__button-remove {
@@ -117,8 +123,13 @@ button {
 	margin-left: 14px;
 }
 
+.item__text {
+	overflow: hidden;
+}
+
 .tasks__all {
 	width: 100%;
+	margin-top: 30px;
 }
 
 /* Checkboxes */
@@ -159,6 +170,38 @@ button {
   /* border-color: #03a8d6; */
 	cursor: pointer;
 }
+
+/* Ошибки */
+
+.tasks__input-error {
+	position: absolute;
+	bottom: -17px;
+	left: 0;
+	font-size: 12px;
+	font-weight: 400;
+	display: none;
+	color: red;
+	padding-left: 15px;
+}
+
+.tasks__error {
+	display:none;
+	text-align: center;
+	color: #c7c4c4;
+	padding-bottom: 4px;
+	border-bottom: 1px solid #c7c4c4;
+	margin-top: 10px;
+}
+
+.active-error {
+	display:block;
+}
+
+.input-error {
+	border: 1px solid red;
+	transition: all 0.2s ease;
+}
+
 
 
 /* стили при наведении курсора на checkbox */

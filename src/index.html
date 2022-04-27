@@ -19,9 +19,12 @@
 				<label class="tasks__input-name" for="task" style="display: none"></label>
 				<input class="tasks__input-field" type="text" name="task" id="inputField" placeholder="Enter task" />
 				<button class="tasks__input-button button"></button>
+				<small class="tasks__input-error"></>Необходимо заполнить поле</small>
 			</div>
+					
 			<div class="tasks__pinned">
 				<h2>Pinned:</h2>
+				<p class="tasks__error">No pinned tasks</p>
 				<!-- <div class="tasks__item item">
 					<p class="item__text">Описание задачи</p>
 					<div class="item__buttons">
@@ -33,6 +36,7 @@
 			</div>
 			<div class="tasks__all">
 				<h2>All Tasks:</h2>
+				<p class="tasks__error"></p>
 			</div>
 		</div>
 	</div>

@@ -4,10 +4,10 @@ import Task from './Task';
 export default class Logic {
   constructor(container) {
     this.container = container;
-    this.input = container.querySelector('.tasks__input');
-    this.inputField = this.container.querySelector('#inputField');
-    this.tasksPinned = container.querySelector('.tasks__pinned');
-    this.tasksAll = container.querySelector('.tasks__all');
+    this.input = this.container.querySelector('.tasks__input'); // Блок ввода задачи
+    this.inputField = this.container.querySelector('#inputField'); // Поле ввода
+    this.tasksPinned = this.container.querySelector('.tasks__pinned'); // Блок с закрепленными задачами
+    this.tasksAll = this.container.querySelector('.tasks__all'); // Блок со всем задачами
     this.tasksList = []; // Общий список задач
 
     this.registerEvents();
@@ -18,8 +18,14 @@ export default class Logic {
     this.inputField.addEventListener('input', this.inputTextHandler.bind(this));
     this.inputField.addEventListener('keydown', this.keyValidate.bind(this));
     addButton.addEventListener('click', this.addTask.bind(this));
-    // this.tasksAll.addEventListener('click', this.allTasksHandler.bind(this));
     this.container.addEventListener('click', this.allTasksHandler.bind(this));
+  }
+
+  /**
+   * Старт приложения
+   */
+  load() {
+    this.CheckingTaskList();
   }
 
   /**
@@ -27,8 +33,14 @@ export default class Logic {
    * @param {} event -
    */
   inputTextHandler(event) {
-    //! Тут будет поиск
-    // console.log(event.target.value);
+    // Проверяем была ли ошибка. Убираем, если была
+    if (this.input.classList.contains('input-error')) {
+      this.input.classList.remove('input-error');
+      this.input.querySelector('.tasks__input-error').classList.remove('active-error');
+    }
+
+    // Поиск
+    this.filterAllTasks(event.target.value.trim());
   }
 
   /**
@@ -37,7 +49,6 @@ export default class Logic {
    */
   keyValidate(event) {
     if (event.keyCode === 13) {
-      console.log('Enter');
       this.addTask();
     }
   }
@@ -47,7 +58,6 @@ export default class Logic {
    * @param {*} event -
    */
   allTasksHandler(event) {
-    //! Событие срабатывает два раза
     // Добавляем в Pinned
     if (event.target.type === 'checkbox') {
       this.movingPined(event);
@@ -78,8 +88,8 @@ export default class Logic {
     } else {
       this.tasksAll.append(element);
     }
-
-    console.log(this.tasksList);
+    // Проверяем наличие элементов в списке
+    this.CheckingTaskList();
   }
 
   /**
@@ -88,25 +98,80 @@ export default class Logic {
    */
   removeTask(event) {
     const element = event.target.closest('.tasks__item');
-    this.tasksList = this.tasksList.filter((item) => item.id !== +element.dataset.id);
+    const id = +element.dataset.id;
+    this.tasksList = this.tasksList.filter((item) => item.id !== id);
     element.remove();
+    this.CheckingTaskList();
   }
 
   /**
    * Добавляет элемент в список задач
    * @param {*} event -
    */
-  addTask(event) {
-    // console.log('add', this.inputField.value);
-    if (this.inputField.value === '') {
-      console.warn('Пустая строка');
+  addTask() {
+    // Проверка на пустую строку
+    const inputValue = this.inputField.value.trim();
+    if (inputValue === '') {
+      this.input.querySelector('.tasks__input-error').classList.add('active-error');
+      this.input.classList.add('input-error');
+      this.inputField.value = '';
       return;
     }
-    const task = new Task(this.inputField.value);
+    const task = new Task(inputValue);
     this.tasksList.push(task);
-    this.tasksAll.append(this.renderTask(task));
     this.inputField.value = '';
-    console.log(this.tasksList);
+    this.filterAllTasks();
+  }
+
+  /**
+   * Фильтрует элементы AllTask по заданному значению
+   * @param {*} data -
+   */
+  filterAllTasks(data = '') {
+    const found = this.tasksList
+      .filter((item) => !item.checked)
+      .filter((item) => item.text.startsWith(data));
+
+    // Очищаем список
+    Array.from(this.tasksAll.children).forEach((item) => {
+      if (item.classList.contains('tasks__item')) {
+        item.remove();
+      }
+    });
+    // Если есть данные ищем. Нет выводим весь список All
+    if (data !== '') {
+      found.forEach((item) => {
+        this.tasksAll.append(this.renderTask(item));
+      });
+    } else {
+      this.tasksList.forEach((item) => {
+        if (item.checked) return;
+        this.tasksAll.append(this.renderTask(item));
+      });
+    }
+    this.CheckingTaskList(found.length);
+  }
+
+  /**
+   * Проверка на пустой список + добавляет сообщение
+   */
+  CheckingTaskList(searchResult) {
+    const pinned = this.tasksList.find((item) => item.checked === true);
+    const allTasks = this.tasksList.find((item) => item.checked === false);
+
+    if (!allTasks || searchResult === 0) {
+      const element = this.tasksAll.querySelector('.tasks__error');
+      element.textContent = allTasks ? 'No fount task' : 'No All tasks';
+      element.classList.add('active-error');
+    } else {
+      this.tasksAll.querySelector('.tasks__error').classList.remove('active-error');
+    }
+
+    if (!pinned) {
+      this.tasksPinned.querySelector('.tasks__error').classList.add('active-error');
+    } else {
+      this.tasksPinned.querySelector('.tasks__error').classList.remove('active-error');
+    }
   }
 
   /**
