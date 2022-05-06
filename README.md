@@ -1,3 +1,6 @@
+![example workflow](https://github.com/lekseff/AHJ_1/actions/workflows/ci_test.yml/badge.svg)
+![example workflow](https://github.com/lekseff/AHJ_1/actions/workflows/deploy.yml/badge.svg)
+
 ### TOP Tasks* (задача со звёздочкой)
 
 Важно: эта задача не является обязательной. Её (не)выполнение не влияет на получение зачёта по ДЗ.
